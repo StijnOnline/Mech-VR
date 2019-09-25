@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.mechvr.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\Users\\stijn\\Documents\\GitHub\\Mech VR\\Mech VR\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "Mech VR [Testing]"
+        }
+      }
+    }
+  ]
+}
