@@ -42,7 +42,6 @@ namespace Valve.VR
             Vector3 forward, up = Vector3.up, result = joint.position;
             if ((start.position - targetPosition).magnitude > maxLength)
             {
-                Debug.Log("out of range");
                 Vector3 delta = (start.position - targetPosition);
                 targetPosition = start.position - delta.normalized * maxLength * 0.98f;
             }
