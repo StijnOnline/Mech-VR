@@ -3,6 +3,8 @@
 // Purpose: Simple two bone ik solver.
 //
 //=============================================================================
+//Edited by Stijn van Deijzen - Student of HKU
+//Not Intended for commercial purposes, maybe for a portfolio 
 
 using UnityEngine;
 
@@ -19,6 +21,13 @@ namespace Valve.VR
         [HideInInspector]
         public Transform startXform, jointXform, endXform;
 
+        private float maxLength;
+
+        private void Start()
+        {
+            maxLength = (start.position - end.position).magnitude;
+        }
+
         void LateUpdate()
         {
             const float epsilon = 0.001f;
@@ -30,11 +39,17 @@ namespace Valve.VR
             var targetPosition = target.position;
             var targetRotation = target.rotation;
 
-            Vector3 forward, up, result = joint.position;
+            Vector3 forward, up = Vector3.up, result = joint.position;
+            if ((start.position - targetPosition).magnitude > maxLength)
+            {
+                Vector3 delta = (start.position - targetPosition);
+                targetPosition = start.position - delta.normalized * maxLength * 0.98f;
+            }
+
             Solve(start.position, targetPosition, poleVector.position,
-                (joint.position - start.position).magnitude,
-                (end.position - joint.position).magnitude,
-                ref result, out forward, out up);
+                    (joint.position - start.position).magnitude,
+                    (end.position - joint.position).magnitude,
+                    ref result, out forward, out up);      
 
             if (up == Vector3.zero)
                 return;
@@ -165,7 +180,7 @@ namespace Valve.VR
                     result += forward * jointDist;
                 }
             }
-
+            
             return false; // edge cases
         }
     }
