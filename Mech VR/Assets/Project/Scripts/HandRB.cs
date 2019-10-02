@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour
+public class HandRB : MonoBehaviour
 {
     public Transform IKhand;
     private Rigidbody rigidB;
@@ -15,9 +15,9 @@ public class Test : MonoBehaviour
 
     void FixedUpdate()
     {
+        //Debug.Log(IKhand.position - rigidB.position);
+
         rigidB.MovePosition(IKhand.position);
         rigidB.MoveRotation(IKhand.rotation);
-
-
     }
 }

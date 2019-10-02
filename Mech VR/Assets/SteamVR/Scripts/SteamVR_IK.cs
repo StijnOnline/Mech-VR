@@ -28,7 +28,7 @@ namespace Valve.VR
             maxLength = (start.position - end.position).magnitude;
         }
 
-        void LateUpdate()
+        void FixedUpdate()
         {
             const float epsilon = 0.001f;
             if (blendPct < epsilon)
