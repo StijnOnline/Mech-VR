@@ -25,6 +25,8 @@ namespace Valve.VR
         
         private static SteamVR_Action_Pose p_mech_pose;
         
+        private static SteamVR_Action_Boolean p_mech_Calibrate;
+        
         private static SteamVR_Action_Vibration p_mech_HapticLeft;
         
         private static SteamVR_Action_Vibration p_mech_HapticRight;
@@ -61,6 +63,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Boolean mech_Calibrate
+        {
+            get
+            {
+                return SteamVR_Actions.p_mech_Calibrate.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
         public static SteamVR_Action_Vibration mech_HapticLeft
         {
             get
@@ -84,13 +94,15 @@ namespace Valve.VR
                     SteamVR_Actions.mech_Shield,
                     SteamVR_Actions.mech_PullAbilityConfirm,
                     SteamVR_Actions.mech_pose,
+                    SteamVR_Actions.mech_Calibrate,
                     SteamVR_Actions.mech_HapticLeft,
                     SteamVR_Actions.mech_HapticRight};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.mech_PullAbility,
                     SteamVR_Actions.mech_Shield,
                     SteamVR_Actions.mech_PullAbilityConfirm,
-                    SteamVR_Actions.mech_pose};
+                    SteamVR_Actions.mech_pose,
+                    SteamVR_Actions.mech_Calibrate};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.mech_HapticLeft,
                     SteamVR_Actions.mech_HapticRight};
@@ -101,7 +113,8 @@ namespace Valve.VR
                     SteamVR_Actions.mech_pose};
             Valve.VR.SteamVR_Input.actionsBoolean = new Valve.VR.SteamVR_Action_Boolean[] {
                     SteamVR_Actions.mech_Shield,
-                    SteamVR_Actions.mech_PullAbilityConfirm};
+                    SteamVR_Actions.mech_PullAbilityConfirm,
+                    SteamVR_Actions.mech_Calibrate};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[] {
                     SteamVR_Actions.mech_PullAbility};
             Valve.VR.SteamVR_Input.actionsVector2 = new Valve.VR.SteamVR_Action_Vector2[0];
@@ -110,7 +123,8 @@ namespace Valve.VR
             Valve.VR.SteamVR_Input.actionsNonPoseNonSkeletonIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.mech_PullAbility,
                     SteamVR_Actions.mech_Shield,
-                    SteamVR_Actions.mech_PullAbilityConfirm};
+                    SteamVR_Actions.mech_PullAbilityConfirm,
+                    SteamVR_Actions.mech_Calibrate};
         }
         
         private static void PreInitActions()
@@ -119,6 +133,7 @@ namespace Valve.VR
             SteamVR_Actions.p_mech_Shield = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Mech/in/Shield")));
             SteamVR_Actions.p_mech_PullAbilityConfirm = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Mech/in/PullAbilityConfirm")));
             SteamVR_Actions.p_mech_pose = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/Mech/in/pose")));
+            SteamVR_Actions.p_mech_Calibrate = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Mech/in/Calibrate")));
             SteamVR_Actions.p_mech_HapticLeft = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/Mech/out/HapticLeft")));
             SteamVR_Actions.p_mech_HapticRight = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/Mech/out/HapticRight")));
         }

@@ -7,7 +7,7 @@ using Valve.VR;
 public class ButtonTest : MonoBehaviour
 {
     public SteamVR_Action_Boolean testAction;
-    public SteamVR_Input_Sources inputSource;
+    public SteamVR_Input_Sources inputSource = SteamVR_Input_Sources.RightHand;
     void OnEnable()
     {
         testAction.AddOnChangeListener(Test2, inputSource);

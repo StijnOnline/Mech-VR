@@ -15,8 +15,6 @@ public class HandRB : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Debug.Log(IKhand.position - rigidB.position);
-
         rigidB.MovePosition(IKhand.position);
         rigidB.MoveRotation(IKhand.rotation);
     }

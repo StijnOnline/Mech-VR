@@ -21,6 +21,10 @@
       "requirement": "mandatory"
     },
     {
+      "name": "/actions/Mech/in/Calibrate",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/Mech/out/HapticLeft",
       "type": "vibration",
       "requirement": "mandatory"
@@ -82,7 +86,8 @@
       "/actions/Mech/out/HapticRight": "HapticRight",
       "/actions/Mech/out/HapticLeft": "HapticLeft",
       "/actions/Mech/in/PullAbilityConfirm": "PullAbilityConfirm",
-      "/actions/Mech/in/pose": "pose"
+      "/actions/Mech/in/pose": "pose",
+      "/actions/Mech/in/Calibrate": "Calibrate"
     }
   ]
 }
