@@ -2,22 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour
-{
+public class HandRB : MonoBehaviour {
     public Transform IKhand;
     private Rigidbody rigidB;
 
-    private void Start()
-    {
+    private void Start() {
         rigidB = GetComponent<Rigidbody>();
     }
 
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         rigidB.MovePosition(IKhand.position);
         rigidB.MoveRotation(IKhand.rotation);
-
-
     }
 }
