@@ -4,22 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
-public class MechTop : MonoBehaviour
-{
+public class MechTop : MonoBehaviour {
     [Header("CameraRig")]
-    public Transform VRrig;    
+    public Transform VRrig;
     public Transform head;
     public Transform leftController;
     public Transform rightController;
 
     [Header("Calibration")]
     public Vector3 headOffset;
-    private Vector3 directionalHeadOffset = new Vector3(0,1.8f,0);
+    private Vector3 directionalHeadOffset = new Vector3(0, 1.8f, 0);
     private Vector3 rigOffset;
 
     public SteamVR_Action_Boolean calibrateAction;
-    public SteamVR_Input_Sources inputSource;   
-    
+    public SteamVR_Input_Sources inputSource;
+
 
     [Header("Arms")]
     public Transform leftTarget;
@@ -30,25 +29,21 @@ public class MechTop : MonoBehaviour
 
     private float slerp = 0.1f;
 
-    void OnEnable()
-    {
+    void OnEnable() {
         calibrateAction.AddOnStateDownListener(Calibrate, inputSource);
-        
-    }    
-
-    void Start()
-    {
 
     }
-    
-    void Update()
-    {
-        //MoveTarget(leftTarget, leftController);
+
+    void Start() {
+
+    }
+
+    void Update() {
+        MoveTarget(leftTarget, leftController);
         MoveTarget(rightTarget, rightController);
     }
 
-    void LateUpdate()
-    {
+    void LateUpdate() {
         //Quaternion rotation = Quaternion.LookRotation((head.forward + leftHand.forward + rightHand.forward));
         Quaternion rotation = head.rotation;
         rotation.z = 0;
@@ -63,18 +58,16 @@ public class MechTop : MonoBehaviour
     }
 
     //TODO: maybe move elbow target outward based on rotation
-    private void MoveTarget(Transform target, Transform controller)
-    {
+    private void MoveTarget(Transform target, Transform controller) {
         //Debug.LogError("FIXME");
         Vector3 startpoint = transform.position + directionalHeadOffset;
         Vector3 toContoller = startpoint - controller.position;
 
         target.position = startpoint - (toContoller * handPositionScaleFactor);
-        target.rotation = controller.rotation * Quaternion.Euler(-20, 0, 0);
+        target.rotation = controller.rotation;//* Quaternion.Euler(-20, 0, 0)
     }
 
-    private void Calibrate(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
-    {        
+    private void Calibrate(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
         rigOffset = VRrig.position - head.position;
     }
 }
