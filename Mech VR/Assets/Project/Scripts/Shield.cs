@@ -19,10 +19,6 @@ public class Shield : MonoBehaviour {
     private void UpdateShield(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) {
         spriteR.enabled = newState;
         coll.enabled = newState;
-
-        //Debug.Log(fromAction);
-        //Debug.Log(fromSource);
-        //Debug.Log(newState);
     }
 
     private void OnCollisionEnter(Collision collision) {

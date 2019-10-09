@@ -14,10 +14,6 @@ public class ArcRenderer : MonoBehaviour {
         g = Mathf.Abs(Physics.gravity.y);
     }
 
-    void Update() {
-        RenderArc(10);
-    }
-
     public void RenderArc(float velocity) {        
         lr.SetPositions(CalculateArcArray(velocity));
     }
