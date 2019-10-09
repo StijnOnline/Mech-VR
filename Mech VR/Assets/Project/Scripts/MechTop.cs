@@ -59,12 +59,11 @@ public class MechTop : MonoBehaviour {
 
     //TODO: maybe move elbow target outward based on rotation
     private void MoveTarget(Transform target, Transform controller) {
-        //Debug.LogError("FIXME");
         Vector3 startpoint = transform.position + directionalHeadOffset;
         Vector3 toContoller = startpoint - controller.position;
 
         target.position = startpoint - (toContoller * handPositionScaleFactor);
-        target.rotation = controller.rotation;//* Quaternion.Euler(-20, 0, 0)
+        target.rotation = controller.rotation;
     }
 
     private void Calibrate(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
