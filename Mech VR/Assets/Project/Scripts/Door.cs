@@ -6,8 +6,15 @@ public class Door : MonoBehaviour
 {
     public Vector3 moveDist;
     private bool open = false;
+    
+    public void Open(GameObject g = null, Collider other = null) {
+        if(!open) {
+            StartCoroutine(moveDoor(transform.position + moveDist));
+            open = true;
+        }
+    }
 
-    public void Open(GameObject g, Collider other) {
+    public void Open() {
         if(!open) {
             StartCoroutine(moveDoor(transform.position + moveDist));
             open = true;
