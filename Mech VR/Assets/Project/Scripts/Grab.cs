@@ -31,11 +31,12 @@ public class Grab : MonoBehaviour {
     }
 
     void Start() {
-        pointer = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        pointer.transform.parent = transform;
+        pointer = GameObject.CreatePrimitive(PrimitiveType.Cube);        
         pointer.transform.localScale = new Vector3(indicatorThickness, indicatorThickness, grabRange);
-        pointer.transform.localPosition = new Vector3(0f, 0f, grabRange / 2);
-        pointer.transform.localRotation = Quaternion.identity;
+        pointer.transform.SetParent(transform);
+
+        pointer.transform.localPosition = new Vector3(0f, 0f, grabRange / 2 / transform.lossyScale.z);
+        pointer.transform.localRotation = Quaternion.identity;        
         Destroy(pointer.GetComponent<BoxCollider>());
     }
 
