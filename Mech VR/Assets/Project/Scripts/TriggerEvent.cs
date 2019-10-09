@@ -10,7 +10,7 @@ public class TriggerEvent : MonoBehaviour
 {
     public MyTriggerEvent triggerEvent = new MyTriggerEvent();
 
-    private void OnTriggerEnter(GameObject gameObject, Collider other) {
+    private void OnTriggerEnter(Collider other) {
         triggerEvent.Invoke(gameObject, other);
     }
 }

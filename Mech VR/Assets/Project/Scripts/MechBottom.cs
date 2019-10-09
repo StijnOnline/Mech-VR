@@ -16,13 +16,13 @@ public class MechBottom : MonoBehaviour {
     public float toTopheight;
     public bool connected = true;
     private Rigidbody rigidB;
-
-
+    public float connectRange;
 
     float input_hor;
     float input_ver;
     bool input_jump;
     bool input_connect;
+    
 
     void Start() {
         rigidB = GetComponent<Rigidbody>();
@@ -34,7 +34,8 @@ public class MechBottom : MonoBehaviour {
         input_ver = Input.GetAxisRaw("Vertical");
         input_jump = Input.GetKeyDown(KeyCode.Space);
         input_connect = Input.GetKeyDown(KeyCode.E);
-        if(input_connect) { Connect(); }
+        if(input_connect && !connected) { Connect(); }
+        if(input_connect && connected) { Disconnect(); }
 
         if(connected) {
             top.position = transform.position + toTopheight * Vector3.up;
@@ -72,11 +73,24 @@ public class MechBottom : MonoBehaviour {
     }
 
     private void Connect() {
-        //nice smoothing so top doesnt jump too far
-
+        if((top.position - transform.position).magnitude < connectRange) {
+            StartCoroutine(Attach());
+        }
     }
 
     private void Disconnect() {
         connected = false;
     }
+
+    public IEnumerator Attach() {
+        Vector3 targetpos = transform.position + toTopheight * Vector3.up;
+        while((targetpos - top.position).magnitude > 0.1f) {
+            targetpos = transform.position + toTopheight * Vector3.up;
+            top.position = Vector3.Lerp(top.position, targetpos, 0.1f);
+            yield return 0;
+        }
+        connected = true;
+        
+        
+    } 
 }
